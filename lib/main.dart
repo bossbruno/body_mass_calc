@@ -40,15 +40,24 @@ class _HomeScreenState extends State<HomeScreen>{
     final double? height = double.tryParse(_heightController.value.text);
     final double? weight = double.tryParse(_weightController.value.text);
 
+  //   if (height == null  || weight == null) {
+  //     setState(() {
+  //       _message = "Your height and weigh must be positive numbers";
+  //     }
+  //
+  //
+  //     );
+  //     return;
+  //
+  //
+  // }
+    if (height == null || weight == null){
 
-    if (height == null || height <= 0 || weight == null || weight <= 0) {
-      setState(() {
-        _message = "Your height and weigh must be positive numbers";
-      });
+        var snackBar = const SnackBar(content: Text('Height or Weight cannot be Empty or Negative'));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
       return;
 
-
-  }
+    }
 setState(() {
   _bmi = weight / (height * height);
   if (_bmi! < 18.5) {
