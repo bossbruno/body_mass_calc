@@ -37,12 +37,34 @@ class _HomeScreenState extends State<HomeScreen>{
 
   String _message = " Please enter your height and weight";
   void _calculate(){
+    final double? height = double.tryParse(_heightController.value.text);
+    final double? weight = double.tryParse(_weightController.value.text);
+
+
+    if (height == null || height <= 0 || weight == null || weight <= 0) {
+      setState(() {
+        _message = "Your height and weigh must be positive numbers";
+      });
+      return;
+
 
   }
+setState(() {
+  _bmi = weight / (height * height);
+  if (_bmi! < 18.5) {
+    _message = "You are underweight";
+  } else if (_bmi! < 25) {
+    _message = 'You body is fine';
+  } else if (_bmi! < 30) {
+    _message = 'You are overweight';
+  } else {
+    _message = 'You are obese';
+  }
+});
 
+    }
   @override
   Widget build(BuildContext context){
-
     return Scaffold(
       backgroundColor: Colors.deepOrange,
       body: Center(
@@ -71,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen>{
       const SizedBox(height: 30,),
 
       Text(
-        _bmi == null ? 'No Result' : _bmi!.toStringAsFixed(2),
+        _bmi == null ? '' : _bmi!.toStringAsFixed(2),
         style: const TextStyle(fontSize: 50),
         textAlign: TextAlign.center,
       ),
