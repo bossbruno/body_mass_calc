@@ -1,4 +1,4 @@
-import 'package:flutter/gestures.dart';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -73,17 +73,17 @@ setState(() {
           child: Card(
             color: Colors.white,
             elevation: 10,
-            child: Padding(padding: EdgeInsets.all(20),
+            child: Padding(padding: const EdgeInsets.all(20),
             child: Column(
     mainAxisSize: MainAxisSize.min,
     children: [
-      TextField( keyboardType: TextInputType.numberWithOptions(decimal: true),
-      decoration: InputDecoration(labelText: "Height (m)"),
+      TextField( keyboardType: const TextInputType.numberWithOptions(decimal: true),
+      decoration: const InputDecoration(labelText: "Height (m)"),
         controller: _heightController,
       ),
       TextField(
-        keyboardType:TextInputType.numberWithOptions(decimal: true),
-          decoration: InputDecoration(
+        keyboardType:const TextInputType.numberWithOptions(decimal: true),
+          decoration: const InputDecoration(
             labelText: 'Weight (kg)',
           ) ,
         controller: _weightController,
